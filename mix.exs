@@ -43,7 +43,8 @@ defmodule Glerl.Web.MixProject do
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
-      {:plug_cowboy, "~> 2.5"}
+      {:plug_cowboy, "~> 2.5"},
+      {:glerl_realtime, path: "../glerl/glerl_realtime"},
     ]
   end
 
