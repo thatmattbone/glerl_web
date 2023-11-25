@@ -1,5 +1,5 @@
-defmodule Glerl.WebWeb.ErrorHTML do
-  use Glerl.WebWeb, :html
+defmodule Glerl.Web.ErrorHTML do
+  use Glerl.Web, :html
 
   # If you want to customize your error pages,
   # uncomment the embed_templates/1 call below

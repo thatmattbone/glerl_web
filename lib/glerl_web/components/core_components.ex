@@ -1,4 +1,4 @@
-defmodule Glerl.WebWeb.CoreComponents do
+defmodule Glerl.Web.CoreComponents do
   @moduledoc """
   Provides core UI components.
 
@@ -17,7 +17,7 @@ defmodule Glerl.WebWeb.CoreComponents do
   use Phoenix.Component
 
   alias Phoenix.LiveView.JS
-  import Glerl.WebWeb.Gettext
+  import Glerl.Web.Gettext
 
   @doc """
   Renders a modal.
@@ -659,9 +659,9 @@ defmodule Glerl.WebWeb.CoreComponents do
     # with our gettext backend as first argument. Translations are
     # available in the errors.po file (as we use the "errors" domain).
     if count = opts[:count] do
-      Gettext.dngettext(Glerl.WebWeb.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(Glerl.Web.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(Glerl.WebWeb.Gettext, "errors", msg, opts)
+      Gettext.dgettext(Glerl.Web.Gettext, "errors", msg, opts)
     end
   end
 

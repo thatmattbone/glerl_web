@@ -12,11 +12,11 @@ config :glerl_web,
   generators: [timestamp_type: :utc_datetime]
 
 # Configures the endpoint
-config :glerl_web, Glerl.WebWeb.Endpoint,
+config :glerl_web, Glerl.Web.Endpoint,
   url: [host: "localhost"],
   adapter: Phoenix.Endpoint.Cowboy2Adapter,
   render_errors: [
-    formats: [html: Glerl.WebWeb.ErrorHTML, json: Glerl.WebWeb.ErrorJSON],
+    formats: [html: Glerl.Web.ErrorHTML, json: Glerl.Web.ErrorJSON],
     layout: false
   ],
   pubsub_server: Glerl.Web.PubSub,

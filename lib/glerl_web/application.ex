@@ -8,13 +8,13 @@ defmodule Glerl.Web.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      Glerl.WebWeb.Telemetry,
+      Glerl.Web.Telemetry,
       {DNSCluster, query: Application.get_env(:glerl_web, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Glerl.Web.PubSub},
       # Start a worker by calling: Glerl.Web.Worker.start_link(arg)
       # {Glerl.Web.Worker, arg},
       # Start to serve requests, typically the last entry
-      Glerl.WebWeb.Endpoint
+      Glerl.Web.Endpoint
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
@@ -27,7 +27,7 @@ defmodule Glerl.Web.Application do
   # whenever the application is updated.
   @impl true
   def config_change(changed, _new, removed) do
-    Glerl.WebWeb.Endpoint.config_change(changed, removed)
+    Glerl.Web.Endpoint.config_change(changed, removed)
     :ok
   end
 end

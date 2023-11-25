@@ -1,4 +1,4 @@
-defmodule Glerl.WebWeb.Endpoint do
+defmodule Glerl.Web.Endpoint do
   use Phoenix.Endpoint, otp_app: :glerl_web
 
   # The session will be stored in the cookie and signed,
@@ -21,7 +21,7 @@ defmodule Glerl.WebWeb.Endpoint do
     at: "/",
     from: :glerl_web,
     gzip: false,
-    only: Glerl.WebWeb.static_paths()
+    only: Glerl.Web.static_paths()
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
@@ -42,5 +42,5 @@ defmodule Glerl.WebWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug Glerl.WebWeb.Router
+  plug Glerl.Web.Router
 end
