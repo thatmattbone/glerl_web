@@ -8,8 +8,9 @@ defmodule Glerl.Web.PageController do
   end
 
   def second_home(conn, _params) do
+    #latest_glerl_data = Glerl.Realtime.Client.latest(30)  # two minute increments so this is an hour.
     latest_glerl_data = Glerl.Realtime.Client.latest()
-    IO.inspect(latest_glerl_data)
+
     conn
     |> assign(:data, latest_glerl_data)
     |> render(:home)
