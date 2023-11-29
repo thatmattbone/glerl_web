@@ -11,12 +11,30 @@
     <header class="container">
       <nav>
         <ul>
-          <li><strong>Brand</strong></li>
+          <li><strong>Chicago Wind Observations</strong></li>
         </ul>
         <ul>
-          <li><a href="#">Link</a></li>
-          <li><a href="#">Link</a></li>
-          <li><a href="#" role="button">Button</a></li>
+          <li>
+            <%= if @nav == :current_conditions do %>
+              <.link href={~p"/"} role="button" class="outline">Current Conditions</.link>
+            <% else %>
+              <.link href={~p"/"}>Current Conditions</.link>
+            <% end %>            
+          </li>
+          <li>
+            <%= if @nav == :previous_days do %>
+              <.link href={~p"/previous-days"} role="button" class="outline">Previous Days</.link>
+            <% else %>
+              <.link href={~p"/previous-days"}>Previous Days</.link>
+            <% end %>
+          </li>
+          <li>
+            <%= if @nav == :historical_conditions do %>
+              <.link href={~p"/historical-conditions"} role="button" class="outline">Historical Conditions</.link>
+            <% else %>
+              <.link href={~p"/historical-conditions"}>Historical Conditions</.link>
+            <% end %>  
+          </li>
         </ul>
       </nav>
     </header>
