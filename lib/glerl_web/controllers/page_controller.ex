@@ -1,10 +1,8 @@
 defmodule Glerl.Web.PageController do
   use Glerl.Web, :controller
 
-  def home(conn, _params) do
-    # The home page is often custom made,
-    # so skip the default app layout.
-    render(conn, :home, layout: false)
+  def current_conditions(conn, _params) do
+    render(conn, :home)
   end
 
   def second_home(conn, _params) do
