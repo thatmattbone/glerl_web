@@ -4,11 +4,32 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content={get_csrf_token()} />
-    <link rel="stylesheet" href={~p"/assets/pico.min.css"} />
+    <link rel="stylesheet" href={~p"/pico.min.css"} />
     <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
     </script>
   </head>
-  <body class="bg-white antialiased">
-    <%= @inner_content %>
+  <body>
+    <header class="container">
+      <nav>
+        <ul>
+          <li><strong>Brand</strong></li>
+        </ul>
+        <ul>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#" role="button">Button</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="container">
+      <%= @inner_content %>
+    </main>
+    
+    <footer class="container">
+      <small>
+        Official Glerl Site
+      </small>
+    </footer>
   </body>
 </html>

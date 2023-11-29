@@ -17,7 +17,7 @@ defmodule Glerl.Web do
   those modules here.
   """
 
-  def static_paths, do: ~w(assets fonts images favicon.ico robots.txt)
+  def static_paths, do: ~w(assets fonts images favicon.ico robots.txt pico.min.css)
 
   def router do
     quote do
