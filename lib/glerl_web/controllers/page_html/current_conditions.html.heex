@@ -1,9 +1,22 @@
-<.my_new_thing fuck="shit"/>
-<ul>
-  <li>Temp: <%= @data.temp_c %></li>
-  <li>Speed: <%= @data.speed %></li>
-  <li>Gusts: <%= @data.gusts %></li>
-  <li>Direction: <%= @data.direction %></li>
-  <li>Humidity: <%= @data.humidity %></li>
-  <li>Last Updated: <%= @data.timestamp %></li>
-</ul>
+<table role="grid">
+  <thead>
+    <tr>
+      <th scope="col">Time</th>
+      <th scope="col">Wind Speed</th>
+      <th scope="col">Gusting To</th>
+      <th scope="col">Direction</th>
+      <th scope="col">Temperature</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for d <- @data do %>
+      <tr>
+        <td><.date_format timestamp={d.timestamp}></.date_format></td>
+        <td><%= d.speed %></td>
+        <td><%= d.gusts %></td>
+        <td><%= d.direction %></td>
+        <td><%= d.temp_c %></td>
+      </tr>
+    <% end %>
+  </tbody>  
+</table>

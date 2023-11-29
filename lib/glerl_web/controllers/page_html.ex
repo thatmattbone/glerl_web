@@ -3,11 +3,15 @@ defmodule Glerl.Web.PageHTML do
 
   embed_templates "page_html/*"
 
-  def my_new_thing(assigns) do
-    IO.inspect(assigns)
+
+  attr :timestamp, :any, required: true
+  def date_format(assigns) do
+    formatted_timestamp = Calendar.strftime(assigns.timestamp, "%m/%d %H:%M")
+
+    assigns = assigns |> assign(formatted_timestamp: formatted_timestamp)
 
     ~H"""
-    <p> This is my new thing. <%= @fuck %></p>
+    <%= @formatted_timestamp %>
     """
   end
 end
