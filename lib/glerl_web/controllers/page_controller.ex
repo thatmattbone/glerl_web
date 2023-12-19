@@ -11,6 +11,20 @@ defmodule Glerl.Web.PageController do
     |> render(:current_conditions)
   end
 
+  # def make_a_basic_point_plot() do
+  #   dataset = make_test_point_data(300)
+
+  #   options = [
+  #     mapping: %{x_col: "X", y_cols: ["Something", "Another"]},
+  #   ]
+
+  #   plot = Plot.new(dataset, PointPlot, 500, 300, options)
+  #     |> Plot.titles("Sample Scatter Plot", nil)
+  #     |> Plot.plot_options(%{legend_setting: :legend_right})
+
+  #   Plot.to_svg(plot)
+  # end  
+
   def previous_days(conn, _params) do
     conn
     |> assign(:nav, :previous_days)
