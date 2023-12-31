@@ -11,16 +11,16 @@
   <tbody>
     <%= for d <- @data do %>
       <tr>
-        <td><.date_format timestamp={d.timestamp}></.date_format></td>
+        <td><.date_format timestamp={d.timestamp}/></td>
         <td><%= d.speed %></td>
         <td><%= d.gusts %></td>
         <td><%= d.direction %></td>
-        <td><%= d.temp_c %></td>
+        <td><.temp_format temp_c={d.temp_c}/></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <div>
-  <.point_plot></.point_plot>
+  <.point_plot data={@data}/>
 </div>
