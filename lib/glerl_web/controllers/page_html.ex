@@ -1,7 +1,7 @@
 defmodule Glerl.Web.PageHTML do
   use Glerl.Web, :html
 
-  alias Contex.{Dataset, Plot, PointPlot}
+  alias Contex.{Dataset, Plot, PointPlot, LinePlot}
 
   embed_templates "page_html/*"
 
@@ -18,14 +18,14 @@ defmodule Glerl.Web.PageHTML do
   end
 
   def point_plot(assigns) do
-    dataset = [{1, 10}, {2, 20}, {3, 30}, {4, 40}, {5, 50}]
-      |> Dataset.new(["X", "Something"])
+    dataset = [{1, 50, 52}, {2, 20, 24}, {3, 30, 31}, {4, 5, 7}, {5, 10, 13}]
+      |> Dataset.new(["X", "Something", "Another Something"])
 
     options = [
-      mapping: %{x_col: "X", y_cols: ["Something"]} #, "Another"]},
+      mapping: %{x_col: "X", y_cols: ["Something", "Another Something"]}
     ]
 
-    plot = Plot.new(dataset, PointPlot, 500, 300, options)
+    plot = Plot.new(dataset, LinePlot, 900, 500, options)
       |> Plot.titles("Sample Scatter Plot", nil)
       |> Plot.plot_options(%{legend_setting: :legend_right})
 
