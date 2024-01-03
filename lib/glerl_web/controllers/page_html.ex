@@ -1,7 +1,7 @@
 defmodule Glerl.Web.PageHTML do
   use Glerl.Web, :html
 
-  alias Contex.{Dataset, Plot, PointPlot, LinePlot, ContinuousLinearScale, Scale}
+  alias Contex.{Dataset, Plot, LinePlot, ContinuousLinearScale, TimeScale, Scale}
 
   embed_templates "page_html/*"
 
@@ -21,7 +21,7 @@ defmodule Glerl.Web.PageHTML do
 
   attr :temp_c, :float, required: true
   def temp_format(assigns) do
-    fahrenheit = (assigns.temp_c * (9/5)) + 32
+    fahrenheit = (assigns.temp_c * (9/5)) + 32 |> Float.round(1)
 
     assigns = assigns |> assign(fahrenheit: fahrenheit)
 
@@ -31,7 +31,18 @@ defmodule Glerl.Web.PageHTML do
   end
   
 
-  attr :date, :any, required: true
+  attr :num, :float, required: true
+  def float_format(assigns) do
+    formatted_float = Float.round(assigns.num, 1)
+
+    assigns = assigns |> assign(formatted_float: formatted_float)
+
+    ~H"""
+    <%= @formatted_float %>
+    """
+  end
+
+  attr :data, :any, required: true
   def point_plot(assigns) do
     # IO.inspect(assigns.data)
 
@@ -54,10 +65,17 @@ defmodule Glerl.Web.PageHTML do
     y_scale = ContinuousLinearScale.new()
       |> ContinuousLinearScale.domain(0.0, 30.0)
       |> Scale.set_range(0.0, 30.0)
+    y_scale = %{y_scale | interval_count: 6, interval_size: 5, display_decimals: 0}
+
+    x_scale = TimeScale.new()
+      |> TimeScale.domain(List.first(assigns.data).timestamp |> DateTime.shift_zone!("America/Chicago"), 
+                          List.last(assigns.data).timestamp  |> DateTime.shift_zone!("America/Chicago"))
+    x_scale = %{x_scale | display_format: "%H:%M"}
 
     options = [
       mapping: %{x_col: "X", y_cols: ["Wind Speed", "Gusting To", "15", "20"]},
-      custom_y_scale:  y_scale
+      custom_y_scale:  y_scale,
+      custom_x_scale: x_scale
     ]
 
     plot = Plot.new(dataset, LinePlot, 900, 500, options)

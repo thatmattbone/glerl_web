@@ -2,18 +2,18 @@
   <thead>
     <tr>
       <th scope="col">Time</th>
-      <th scope="col">Wind Speed</th>
-      <th scope="col">Gusting To</th>
+      <th scope="col">Wind</th>
+      <th scope="col">Gusts</th>
       <th scope="col">Direction</th>
-      <th scope="col">Temperature</th>
+      <th scope="col">Temp</th>
     </tr>
   </thead>
   <tbody>
     <%= for d <- @data do %>
       <tr>
         <td><.date_format timestamp={d.timestamp}/></td>
-        <td><%= d.speed %></td>
-        <td><%= d.gusts %></td>
+        <td><.float_format num={d.speed}/></td>
+        <td><.float_format num={d.gusts}/></td>
         <td><%= d.direction %></td>
         <td><.temp_format temp_c={d.temp_c}/></td>
       </tr>
