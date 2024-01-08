@@ -5,6 +5,10 @@ defmodule Glerl.Web.PageHTML do
 
   embed_templates "page_html/*"
 
+  def hello_world() do
+    "HELLO WORLD!!"
+  end
+
 
   attr :timestamp, :any, required: true
   def date_format(assigns) do
@@ -44,8 +48,6 @@ defmodule Glerl.Web.PageHTML do
 
   attr :data, :any, required: true
   def point_plot(assigns) do
-    # IO.inspect(assigns.data)
-
     dataset = for datapoint <- assigns.data do
       chicago_time = DateTime.shift_zone!(datapoint.timestamp, "America/Chicago")
 
@@ -58,7 +60,6 @@ defmodule Glerl.Web.PageHTML do
       }
     end
 
-    # [{1, 50, 52}, {2, 20, 24}, {3, 30, 31}, {4, 5, 7}, {5, 10, 13}]
     dataset = dataset
       |> Dataset.new(["X", "Wind Speed", "Gusting To", "15", "20"])
 
@@ -80,7 +81,7 @@ defmodule Glerl.Web.PageHTML do
 
     plot = Plot.new(dataset, LinePlot, 900, 500, options)
       # |> Plot.titles("Sample Scatter Plot", nil)
-      |> Plot.plot_options(%{legend_setting: :legend_right})
+      |> Plot.plot_options(%{legend_setting: :legend_none})
 
     svg = Plot.to_svg(plot)
 
