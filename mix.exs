@@ -45,7 +45,7 @@ defmodule Glerl.Web.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:plug_cowboy, "~> 2.5"},
       {:contex, "~> 0.5.0"},
-      {:glerl_realtime, path: "../glerl/glerl_realtime"},
+      {:glerl, path: "../glerl"},
     ]
   end
 
