@@ -44,6 +44,7 @@ defmodule Glerl.Web.MixProject do
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
       {:plug_cowboy, "~> 2.5"},
+      {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
       {:contex, "~> 0.5.0"},
       {:glerl, path: "../glerl"},
     ]

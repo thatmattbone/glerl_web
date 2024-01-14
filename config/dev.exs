@@ -55,8 +55,8 @@ config :glerl_web, Glerl.Web.Endpoint,
 # Enable dev routes for dashboard and mailbox
 config :glerl_web, dev_routes: true
 
-# Do not include metadata nor timestamps in development logs
-config :logger, :console, format: "[$level] $message\n"
+config :logger, :console, 
+  format: "$date $time [$level] $message\n"
 
 # Set a higher stacktrace during development. Avoid configuring such
 # in production as building large stacktraces may be expensive.
