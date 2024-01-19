@@ -76,13 +76,11 @@ defmodule Glerl.Web.PageHTML do
     options = [
       mapping: %{x_col: "X", y_cols: ["Wind Speed", "Gusting To", "15", "20"]},
       custom_y_scale:  y_scale,
-      custom_x_scale: x_scale
+      custom_x_scale: x_scale,
+      legend_setting: :legend_none
     ]
 
     plot = Plot.new(dataset, LinePlot, 900, 500, options)
-      # |> Plot.titles("Sample Scatter Plot", nil)
-      |> Plot.plot_options(%{legend_setting: :legend_none})
-
     svg = Plot.to_svg(plot)
 
     assigns = assigns |> assign(svg: svg)
