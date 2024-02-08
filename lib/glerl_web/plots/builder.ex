@@ -1,4 +1,4 @@
-defmodule GlerlWeb.Plots.Builder do
+defmodule Glerl.Web.Plots.Builder do
     alias Contex.{Dataset, Plot, LinePlot, ContinuousLinearScale, TimeScale, Scale}
 
     # TODO this is all kind of a tightly coupled mess right now.

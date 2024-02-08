@@ -1,8 +1,8 @@
-defmodule Glerl.Web.GlerlTimeScale do
+defmodule Glerl.Web.Plots.TimeScale do
     defstruct []
 end
   
-defimpl Contex.Scale, for: Glerl.Web.GlerlTimeScale do
+defimpl Contex.Scale, for: Glerl.Web.Plots.TimeScale do
     # @spec ticks_domain(t()) :: list(any())
     def ticks_domain(scale) do
         IO.inspect(scale)
