@@ -48,7 +48,8 @@ defmodule Glerl.Web.PageHTML do
 
   attr :data, :any, required: true
   def point_plot(assigns) do
-    plot = Glerl.Web.Plots.Builder.build_point_plot(assigns.data)
+    # plot = Glerl.Web.Plots.Builder.build_point_plot(assigns.data)
+    plot = Glerl.Web.Plots.Builder.build_point_plot__custom_scale(assigns.data)
     svg = Plot.to_svg(plot)
 
     assigns = assigns |> assign(svg: svg)
