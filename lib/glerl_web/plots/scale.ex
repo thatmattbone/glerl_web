@@ -3,6 +3,11 @@ defmodule Glerl.Web.Plots.TimeScale do
         :custom_tick_formatter
     ]
 
+    @type t :: %__MODULE__{
+        custom_tick_formatter: any
+    }
+
+    @spec new() :: t()
     def new() do 
         %__MODULE__{}
     end
@@ -82,5 +87,7 @@ defimpl Contex.Scale, for: Glerl.Web.Plots.TimeScale do
         IO.inspect(scale)
         IO.inspect(tick_val)
         IO.puts("*****************************************************")
+
+        tick_val
     end
 end
