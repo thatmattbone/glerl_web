@@ -101,11 +101,48 @@ defimpl Contex.Scale, for: Glerl.Web.Plots.TimeScale do
         # need to find out what calls this because I think the Plot itself (or some other outside thing) is determining 
         # the width of the range and asking us to honor it.
         # I figured we'd be setting that width in here, but if that were the case this function probably wouldn't be needed.
+
+        # First
+        #     {Contex.Scale.Glerl.Web.Plots.TimeScale, :set_range, 3,
+        #     [file: ~c"lib/glerl_web/plots/time_scale.ex", line: 110]},
+        #    {Contex.LinePlot, :prepare_x_scale, 1,
+        #     [file: ~c"lib/chart/lineplot.ex", line: 304]},
+        #    {Contex.LinePlot, :prepare_scales, 1,
+        #     [file: ~c"lib/chart/lineplot.ex", line: 291]},
+        #    {Contex.LinePlot, :get_legend_scales, 1,
+        #     [file: ~c"lib/chart/lineplot.ex", line: 181]},
+        #    {Contex.Plot, :calculate_margins, 1,
+        #     [file: ~c"lib/chart/plot.ex", line: 377]},        
+        # 
+        # Second
+        # {Contex.Scale.Glerl.Web.Plots.TimeScale, :set_range, 3,
+        #  [file: ~c"lib/glerl_web/plots/time_scale.ex", line: 123]},
+        # {Contex.LinePlot, :prepare_x_scale, 1,
+        #  [file: ~c"lib/chart/lineplot.ex", line: 304]},
+        # {Contex.LinePlot, :prepare_scales, 1,
+        #  [file: ~c"lib/chart/lineplot.ex", line: 291]},
+        # {Contex.LinePlot, :get_legend_scales, 1,
+        #  [file: ~c"lib/chart/lineplot.ex", line: 181]},
+        # {Contex.Plot, :to_svg, 1, [file: ~c"lib/chart/plot.ex", line: 210]},
+        #
+        # Third
+        # {Contex.Scale.Glerl.Web.Plots.TimeScale, :set_range, 3,
+        #  [file: ~c"lib/glerl_web/plots/time_scale.ex", line: 123]},
+        # {Contex.LinePlot, :prepare_x_scale, 1,
+        #  [file: ~c"lib/chart/lineplot.ex", line: 304]},
+        # {Contex.LinePlot, :prepare_scales, 1,
+        #  [file: ~c"lib/chart/lineplot.ex", line: 291]},
+        # {Contex.LinePlot, :to_svg, 2, [file: ~c"lib/chart/lineplot.ex", line: 189]},
+        # {Contex.Plot, :to_svg, 1, [file: ~c"lib/chart/plot.ex", line: 236]},
+ 
+
         IO.puts("set_range()")
         IO.inspect(scale)
         IO.inspect(start)
         IO.inspect(finish)
         IO.puts("*****************************************************")
+
+        dbg()
 
         scale
     end
