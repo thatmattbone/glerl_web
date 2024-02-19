@@ -1,15 +1,19 @@
 defmodule Glerl.Web.Plots.TimeScale do
     defstruct [
-        :custom_tick_formatter
+        :custom_tick_formatter,
+        :domain,
     ]
 
     @type t :: %__MODULE__{
-        custom_tick_formatter: any
+        custom_tick_formatter: any,
+        domain: {DateTime.t(), DateTime.t()}
     }
 
-    @spec new() :: t()
-    def new() do 
-        %__MODULE__{}
+    @spec new({DateTime.t(), DateTime.t()}) :: t()
+    def new({min_d=%DateTime{}, max_d=%DateTime{}}) do
+        %__MODULE__{
+            domain: {min_d, max_d}
+        }
     end
 end
   
@@ -42,6 +46,12 @@ defimpl Contex.Scale, for: Glerl.Web.Plots.TimeScale do
             IO.puts("my domain_to_range_fn()")
             IO.inspect(x)
             IO.puts("*****************************************************")
+
+            # DateTime.diff(a, b, :microsecond)
+
+            # milliseconds_val = Utils.date_diff(domain_val, min_d, :microsecond)
+            # ratio = (milliseconds_val - domain_min) / domain_width
+            # min_r + ratio * range_width
 
             x
         end
