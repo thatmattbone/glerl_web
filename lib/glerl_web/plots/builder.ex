@@ -26,8 +26,10 @@ defmodule Glerl.Web.Plots.Builder do
     def build_point_plot(data) do
         dataset = convert_to_contex_data(data)
 
-        first_timestamp = List.first(data).timestamp |> DateTime.shift_zone!("America/Chicago")
-        last_timestamp = List.first(data).timestamp |> DateTime.shift_zone!("America/Chicago")
+        first_timestamp_utc = List.first(data).timestamp
+        # |> DateTime.shift_zone!("America/Chicago")
+        last_timestamp_utc = List.last(data).timestamp
+        # |> DateTime.shift_zone!("America/Chicago")
 
         y_scale = ContinuousLinearScale.new()
           |> ContinuousLinearScale.domain(0.0, 30.0)
@@ -35,7 +37,7 @@ defmodule Glerl.Web.Plots.Builder do
         y_scale = %{y_scale | interval_count: 6, interval_size: 5, display_decimals: 0}
 
         x_scale = TimeScale.new()
-          |> TimeScale.domain(first_timestamp, last_timestamp)
+          |> TimeScale.domain(first_timestamp_utc, last_timestamp_utc)
         x_scale = %{x_scale | display_format: "%H:%M"}
 
         options = [
