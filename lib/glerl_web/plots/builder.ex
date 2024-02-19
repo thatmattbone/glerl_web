@@ -31,9 +31,9 @@ defmodule Glerl.Web.Plots.Builder do
         
 
         y_scale = ContinuousLinearScale.new()
-          |> ContinuousLinearScale.domain(0.0, 30.0)
-          |> Scale.set_range(0.0, 30.0)
-        y_scale = %{y_scale | interval_count: 6, interval_size: 5, display_decimals: 0}
+          |> ContinuousLinearScale.domain(0.0, 30.0)  # normally stop at 30 knots
+          |> Scale.set_range(0.0, 30.0)  # normally stop at 30 knots
+        y_scale = %{y_scale | interval_count: 8, interval_size: 5, display_decimals: 0}
 
         x_scale = TimeScale.new()
           |> TimeScale.domain(first_timestamp_chi, last_timestamp_chi)
@@ -51,6 +51,7 @@ defmodule Glerl.Web.Plots.Builder do
 
     @spec build_point_plot__custom_scale(list(Glerl.Core.Datapoint.t())) :: Plot
     def build_point_plot__custom_scale(data) do
+        data = Enum.reverse(data)
         IO.puts("build_point_plot__custom_scale()")
         dataset = convert_to_contex_data(data)
 
@@ -60,8 +61,8 @@ defmodule Glerl.Web.Plots.Builder do
         IO.puts("*****************************************************")
 
         y_scale = ContinuousLinearScale.new()
-          |> ContinuousLinearScale.domain(0.0, 30.0)
-          |> Scale.set_range(0.0, 30.0)
+          |> ContinuousLinearScale.domain(0.0, 30.0) # normally stop at 30 knots
+          |> Scale.set_range(0.0, 30.0) # normally stop at 30 knots
         y_scale = %{y_scale | interval_count: 6, interval_size: 5, display_decimals: 0}
 
         x_scale = Glerl.Web.Plots.TimeScale.new({first_timestamp_utc, last_timestamp_utc})
