@@ -23,6 +23,7 @@ defmodule Glerl.Web.PageHTML do
     """
   end
 
+
   attr :temp_c, :float, required: true
   def temp_format(assigns) do
     fahrenheit = (assigns.temp_c * (9/5)) + 32 |> Float.round(1)
@@ -46,6 +47,7 @@ defmodule Glerl.Web.PageHTML do
     """
   end
 
+  
   attr :data, :any, required: true
   def point_plot(assigns) do
     # plot = Glerl.Web.Plots.Builder.build_point_plot(assigns.data)
