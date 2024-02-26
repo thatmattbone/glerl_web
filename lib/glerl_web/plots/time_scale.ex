@@ -17,23 +17,35 @@ defmodule Glerl.Web.Plots.TimeScale do
             domain: {min_d, max_d}
         }
     end
-end
+
+    def next_even_datetime(%{minute: minute}=my_datetime) when rem(minute, 5) == 0 do
+        my_datetime
+      end
+
+      def next_even_datetime(%{minute: minute}=my_datetime) do
+        %{my_datetime | minute: minute + 1} |> next_even_datetime()
+      end  
+    end
   
 defimpl Contex.Scale, for: Glerl.Web.Plots.TimeScale do
     def ticks_domain(%Glerl.Web.Plots.TimeScale{domain: {min_d, max_d}}) do
+        min_d = Glerl.Web.Plots.TimeScale.next_even_datetime(min_d)
+
         min_d_secs = DateTime.to_unix(min_d, :second)
         max_d_secs = DateTime.to_unix(max_d, :second)
 
-        for time_secs <- (min_d_secs+100)..max_d_secs//600 do
+        for time_secs <- min_d_secs..max_d_secs//600 do
             DateTime.from_unix!(time_secs, :second) |> DateTime.shift_zone!("America/Chicago")
         end
     end
   
     def ticks_range(%Glerl.Web.Plots.TimeScale{domain: {min_d, max_d}}) do
+        min_d = Glerl.Web.Plots.TimeScale.next_even_datetime(min_d)
+
         min_d_secs = DateTime.to_unix(min_d, :second)
         max_d_secs = DateTime.to_unix(max_d, :second)
 
-        for time_secs <- min_d_secs..max_d_secs//300 do
+        for time_secs <- min_d_secs..max_d_secs//600 do
             DateTime.from_unix!(time_secs, :second) |> DateTime.shift_zone!("America/Chicago")
         end
     end
