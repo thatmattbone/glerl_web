@@ -52,13 +52,10 @@ defmodule Glerl.Web.Plots.Builder do
     @spec build_point_plot__custom_scale(list(Glerl.Core.Datapoint.t())) :: Plot
     def build_point_plot__custom_scale(data) do
         data = Enum.reverse(data)
-        IO.puts("build_point_plot__custom_scale()")
         dataset = convert_to_contex_data(data)
 
-        first_timestamp_utc = List.first(data).timestamp |> IO.inspect()
-        last_timestamp_utc = List.last(data).timestamp |> IO.inspect()
-
-        IO.puts("*****************************************************")
+        first_timestamp_utc = List.first(data).timestamp
+        last_timestamp_utc = List.last(data).timestamp
 
         y_scale = ContinuousLinearScale.new()
           |> ContinuousLinearScale.domain(0.0, 30.0) # normally stop at 30 knots

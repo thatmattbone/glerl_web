@@ -29,7 +29,7 @@ defimpl Contex.Scale, for: Glerl.Web.Plots.TimeScale do
         end
     end
   
-    def ticks_range(scale=%Glerl.Web.Plots.TimeScale{domain: {min_d, max_d}}) do
+    def ticks_range(%Glerl.Web.Plots.TimeScale{domain: {min_d, max_d}}) do
         min_d_secs = DateTime.to_unix(min_d, :second)
         max_d_secs = DateTime.to_unix(max_d, :second)
 
@@ -38,16 +38,11 @@ defimpl Contex.Scale, for: Glerl.Web.Plots.TimeScale do
         end
     end
   
-    def domain_to_range_fn(%Glerl.Web.Plots.TimeScale{domain: {min_d, max_d}, range: {min_r, max_r}}=scale) do   
+    def domain_to_range_fn(%Glerl.Web.Plots.TimeScale{domain: {min_d, max_d}, range: {min_r, max_r}}) do   
         range_width = max_r - min_r
         domain_width = DateTime.diff(max_d, min_d, :second)
 
         my_func = fn(x) ->
-            IO.puts("my domain_to_range_fn()")
-            IO.inspect(x)
-            IO.inspect(min_d)
-            IO.puts("*****************************************************")
-
             seconds_diff = DateTime.diff(x, min_d, :second)
             ratio = seconds_diff / domain_width
             min_r + ratio * range_width
@@ -60,7 +55,7 @@ defimpl Contex.Scale, for: Glerl.Web.Plots.TimeScale do
         domain_val
     end
   
-    def get_range(%Glerl.Web.Plots.TimeScale{range: range}=_scale) do
+    def get_range(%Glerl.Web.Plots.TimeScale{range: range}) do
         range
     end
   
@@ -68,7 +63,7 @@ defimpl Contex.Scale, for: Glerl.Web.Plots.TimeScale do
         %{scale | range: {start, finish}}
     end
   
-    def get_formatted_tick(_scale, %{hour: hour, minute: minute} = _tick_val) do
+    def get_formatted_tick(_scale, %{hour: hour, minute: minute}) do
         minute_str = minute |> Integer.to_string() |> String.pad_leading(2, "0")
 
         "#{hour}:#{minute_str}"
