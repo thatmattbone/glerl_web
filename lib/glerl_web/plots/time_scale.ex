@@ -29,6 +29,8 @@ defmodule Glerl.Web.Plots.TimeScale do
   
 defimpl Contex.Scale, for: Glerl.Web.Plots.TimeScale do
     def ticks_domain(%Glerl.Web.Plots.TimeScale{domain: {min_d, max_d}}) do
+        # the way this is setup, this is the function used when rendering...
+        # not totally sure why ticks_range() has no impact or when it's called. need to read more contex code.
         min_d = Glerl.Web.Plots.TimeScale.next_even_datetime(min_d)
 
         min_d_secs = DateTime.to_unix(min_d, :second)
