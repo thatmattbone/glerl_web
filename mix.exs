@@ -5,7 +5,7 @@ defmodule Glerl.Web.MixProject do
     [
       app: :glerl_web,
       version: "0.1.0",
-      elixir: "~> 1.14",
+      elixir: "~> 1.15",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
@@ -19,7 +19,10 @@ defmodule Glerl.Web.MixProject do
   def application do
     [
       mod: {Glerl.Web.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [
+        :logger,
+        :runtime_tools
+      ]
     ]
   end
 
@@ -47,7 +50,7 @@ defmodule Glerl.Web.MixProject do
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
       {:contex, "~> 0.5.0"},
       # {:glerl, path: "../glerl"},  # TODO figure out a better way to juggle this
-      {:glerl, git: "https://github.com/thatmattbone/glerl.git", tag: "0.1"},
+      {:glerl, git: "https://github.com/thatmattbone/glerl.git", tag: "0.1.0"},
     ]
   end
 
