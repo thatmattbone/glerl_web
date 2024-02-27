@@ -46,7 +46,8 @@ defmodule Glerl.Web.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
       {:contex, "~> 0.5.0"},
-      {:glerl, path: "../glerl"},
+      # {:glerl, path: "../glerl"},  # TODO figure out a better way to juggle this
+      {:glerl, git: "https://github.com/thatmattbone/glerl.git", tag: "0.1"},
     ]
   end
 
