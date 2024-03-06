@@ -13,3 +13,6 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 
   * `iex --dbg pry -S mix phx.server`
   * Show stacktrace: `Process.info(self(), :current_stacktrace)`
+
+## Deploying
+  * `fly deploy`

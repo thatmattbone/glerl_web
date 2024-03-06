@@ -10,12 +10,6 @@ defmodule Glerl.Web.PageController do
       |> render(:current_conditions)
   end
 
-  def previous_days(conn, _params) do
-    conn
-      |> assign(:nav, :previous_days)
-      |> render(:previous_days)
-  end
-
   def historical_conditions(conn, _params) do
     conn
       |> assign(:nav, :historical_conditions)

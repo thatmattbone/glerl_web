@@ -22,13 +22,6 @@
             <% end %>            
           </li>
           <li>
-            <%= if @nav == :previous_days do %>
-              <.link href={~p"/previous-days"} role="button" class="outline">Previous Days</.link>
-            <% else %>
-              <.link href={~p"/previous-days"}>Previous Days</.link>
-            <% end %>
-          </li>
-          <li>
             <%= if @nav == :historical_conditions do %>
               <.link href={~p"/historical-conditions"} role="button" class="outline">Historical Conditions</.link>
             <% else %>

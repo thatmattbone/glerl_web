@@ -18,7 +18,6 @@ defmodule Glerl.Web.Router do
     pipe_through :browser
 
     get "/", PageController, :current_conditions
-    get "/previous-days", PageController, :previous_days
     get "/historical-conditions", PageController, :historical_conditions
     get "/about", PageController, :about
   end
