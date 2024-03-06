@@ -4,9 +4,15 @@ defmodule Glerl.Web.PageController do
   def current_conditions(conn, _params) do
     latest_glerl_data = Glerl.Realtime.Client.latest(120)  # two minute increments so this is four hours
 
+    [%{timestamp: timestamp} | _] = latest_glerl_data
+    timestamp_diff = DateTime.utc_now() |> DateTime.diff(timestamp, :minute)
+    is_data_stale = timestamp_diff > 30  # minutes
+
     conn
       |> assign(:data, latest_glerl_data)
       |> assign(:nav, :current_conditions)
+      |> assign(:is_data_stale, is_data_stale)
+      |> assign(:timestamp_diff, timestamp_diff)
       |> render(:current_conditions)
   end
 

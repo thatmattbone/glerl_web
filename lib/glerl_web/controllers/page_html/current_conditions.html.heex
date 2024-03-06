@@ -1,3 +1,10 @@
+<%= if @is_data_stale do %>
+  <article style="background-color: lightcoral">
+    <h1>This wind data is stale!</h1>
+    <p>It is <%= @timestamp_diff %> minutes old. Please find another source for your wind information until this issue is resolved.</p>
+  </article>
+<% end %>
+
 <div style="margin-left: 0rem;">
   <.point_plot data={@data}/>
 </div>
