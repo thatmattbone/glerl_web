@@ -10,9 +10,9 @@ defmodule Glerl.Web.PageController do
 
     conn
       |> assign(:data, latest_glerl_data)
-      |> assign(:nav, :current_conditions)
       |> assign(:is_data_stale, is_data_stale)
       |> assign(:timestamp_diff, timestamp_diff)
+      |> assign(:nav, :current_conditions)
       |> render(:current_conditions)
   end
 
