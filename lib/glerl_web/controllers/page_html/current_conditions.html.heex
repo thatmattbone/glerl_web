@@ -25,7 +25,7 @@
         <td><.date_format timestamp={d.timestamp}/></td>
         <td><.float_format num={d.speed}/></td>
         <td><.float_format num={d.gusts}/></td>
-        <td><%= d.direction %></td>
+        <td><%= d.direction %>, <.direction_format direction={d.direction}/></td>
         <td><.temp_format temp_c={d.temp_c}/></td>
       </tr>
     <% end %>

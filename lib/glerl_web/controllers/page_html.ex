@@ -47,6 +47,16 @@ defmodule Glerl.Web.PageHTML do
     """
   end
 
+
+  def direction_format(assigns) do
+    formatted_direction = Glerl.Core.Conversion.degrees_to_direction(assigns.direction)
+
+    assigns = assigns |> assign(formatted_direction: formatted_direction)
+
+    ~H"""
+    <%= @formatted_direction %>
+    """    
+  end
   
   attr :data, :any, required: true
   def point_plot(assigns) do
