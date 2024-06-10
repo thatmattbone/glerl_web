@@ -10,6 +10,7 @@ defmodule Glerl.Web.Plots.Builder do
         Enum.max(speeds ++ gusts)
     end
 
+    
     @spec calc_wind_range_from_max(number()) :: number()
     def calc_wind_range_from_max(max_wind) when max_wind < 30.0, do: 30.0
     def calc_wind_range_from_max(max_wind) when max_wind < 35.0, do: 35.0
@@ -53,7 +54,6 @@ defmodule Glerl.Web.Plots.Builder do
         last_timestamp_utc = List.last(glerl_datapoints).timestamp
 
         y_scale_max = glerl_datapoints |> max_wind_speed() |> calc_wind_range_from_max()
-        IO.puts(y_scale_max)
         y_scale = ContinuousLinearScale.new()
           |> ContinuousLinearScale.domain(0.0, y_scale_max)
           |> Scale.set_range(0.0, y_scale_max)
