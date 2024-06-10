@@ -1,5 +1,5 @@
 defmodule Glerl.Web.Plots.Builder do
-    alias Contex.{Dataset, Plot, LinePlot, ContinuousLinearScale, TimeScale, Scale}
+    alias Contex.{Dataset, Plot, LinePlot, ContinuousLinearScale, Scale}
 
 
     @spec max_wind_speed(list(Glerl.Core.Datapoint.t())) :: number()
