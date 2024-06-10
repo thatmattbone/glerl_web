@@ -34,7 +34,7 @@ defmodule Glerl.Web.PageHTML do
     <%= @fahrenheit %>
     """
   end
-  
+
 
   attr :num, :float, required: true
   def float_format(assigns) do
@@ -55,13 +55,13 @@ defmodule Glerl.Web.PageHTML do
 
     ~H"""
     <%= @formatted_direction %>
-    """    
+    """
   end
-  
+
   attr :data, :any, required: true
   def point_plot(assigns) do
     # plot = Glerl.Web.Plots.Builder.build_point_plot(assigns.data)
-    plot = Glerl.Web.Plots.Builder.build_point_plot__custom_scale(assigns.data)
+    plot = Glerl.Web.Plots.Builder.build_wind_plot(assigns.data)
     svg = Plot.to_svg(plot)
 
     assigns = assigns |> assign(svg: svg)
