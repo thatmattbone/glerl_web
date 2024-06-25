@@ -26,9 +26,9 @@ defmodule Glerl.Web.Plots.Builder do
     def calc_wind_range_from_max(max_wind), do: max_wind + 5.0
 
 
-    @spec convert_to_contex_data(list(Glerl.Core.Datapoint.t())) :: Dataset.t()
-    def convert_to_contex_data(gler_datapoints) do
-        contex_dataset = for datapoint <- gler_datapoints do
+    @spec convert_wind_speed_to_contex_data(list(Glerl.Core.Datapoint.t())) :: Dataset.t()
+    def convert_wind_speed_to_contex_data(glerl_datapoints) do
+        contex_dataset = for datapoint <- glerl_datapoints do
             chicago_time = DateTime.shift_zone!(datapoint.timestamp, "America/Chicago")
 
             {
@@ -48,7 +48,7 @@ defmodule Glerl.Web.Plots.Builder do
     @spec build_wind_speed_plot(list(Glerl.Core.Datapoint.t())) :: Plot
     def build_wind_speed_plot(glerl_datapoints) do
         glerl_datapoints = Enum.reverse(glerl_datapoints)
-        dataset = convert_to_contex_data(glerl_datapoints)
+        dataset = convert_wind_speed_to_contex_data(glerl_datapoints)
 
         first_timestamp_utc = List.first(glerl_datapoints).timestamp
         last_timestamp_utc = List.last(glerl_datapoints).timestamp
@@ -72,24 +72,40 @@ defmodule Glerl.Web.Plots.Builder do
         Plot.new(dataset, LinePlot, 900, 500, options)
     end
 
+
+    @spec convert_wind_speed_to_contex_data(list(Glerl.Core.Datapoint.t())) :: Dataset.t()
+    def convert_wind_direction_to_contex_data(glerl_datapoints) do
+        contex_dataset = for datapoint <- glerl_datapoints do
+            chicago_time = DateTime.shift_zone!(datapoint.timestamp, "America/Chicago")
+
+            {
+                chicago_time,
+                datapoint.direction
+            }
+        end
+
+        contex_dataset
+          |> Dataset.new(["X", "Wind Direction"])
+    end
+
+
     @spec build_wind_direction_plot(list(Glerl.Core.Datapoint.t())) :: Plot
     def build_wind_direction_plot(glerl_datapoints) do
         glerl_datapoints = Enum.reverse(glerl_datapoints)
-        dataset = convert_to_contex_data(glerl_datapoints)
+        dataset = convert_wind_direction_to_contex_data(glerl_datapoints)
 
         first_timestamp_utc = List.first(glerl_datapoints).timestamp
         last_timestamp_utc = List.last(glerl_datapoints).timestamp
 
-        y_scale_max = glerl_datapoints |> max_wind_speed() |> calc_wind_range_from_max()
         y_scale = ContinuousLinearScale.new()
-          |> ContinuousLinearScale.domain(0.0, y_scale_max)
-          |> Scale.set_range(0.0, y_scale_max)
-        y_scale = %{y_scale | interval_count: round(y_scale_max/5), interval_size: 5, display_decimals: 0}
+          |> ContinuousLinearScale.domain(0.0, 360.0)
+          |> Scale.set_range(0.0, 360.0)
+        y_scale = %{y_scale | interval_count: 4, interval_size: 90, display_decimals: 0}
 
         x_scale = Glerl.Web.Plots.TimeScale.new({first_timestamp_utc, last_timestamp_utc})
 
         options = [
-            mapping: %{x_col: "X", y_cols: ["Wind Speed", "Gusting To", "15", "21"]},
+            mapping: %{x_col: "X", y_cols: ["Wind Direction"]},
             custom_y_scale:  y_scale,
             custom_x_scale: x_scale,
             legend_setting: :legend_none,
