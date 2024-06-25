@@ -59,9 +59,8 @@ defmodule Glerl.Web.PageHTML do
   end
 
   attr :data, :any, required: true
-  def point_plot(assigns) do
-    # plot = Glerl.Web.Plots.Builder.build_point_plot(assigns.data)
-    plot = Glerl.Web.Plots.Builder.build_wind_plot(assigns.data)
+  def wind_speed_plot(assigns) do
+    plot = Glerl.Web.Plots.Builder.build_wind_speed_plot(assigns.data)
     svg = Plot.to_svg(plot)
 
     assigns = assigns |> assign(svg: svg)
@@ -70,4 +69,17 @@ defmodule Glerl.Web.PageHTML do
     <%= @svg %>
     """
   end
+
+  attr :data, :any, required: true
+  def wind_direction_plot(assigns) do
+    plot = Glerl.Web.Plots.Builder.build_wind_direction_plot(assigns.data)
+    svg = Plot.to_svg(plot)
+
+    assigns = assigns |> assign(svg: svg)
+
+    ~H"""
+    <%= @svg %>
+    """
+  end
+
 end

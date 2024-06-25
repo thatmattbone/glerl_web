@@ -10,7 +10,7 @@ defmodule Glerl.Web.Plots.Builder do
         Enum.max(speeds ++ gusts)
     end
 
-    
+
     @spec calc_wind_range_from_max(number()) :: number()
     def calc_wind_range_from_max(max_wind) when max_wind < 30.0, do: 30.0
     def calc_wind_range_from_max(max_wind) when max_wind < 35.0, do: 35.0
@@ -45,8 +45,35 @@ defmodule Glerl.Web.Plots.Builder do
     end
 
 
-    @spec build_wind_plot(list(Glerl.Core.Datapoint.t())) :: Plot
-    def build_wind_plot(glerl_datapoints) do
+    @spec build_wind_speed_plot(list(Glerl.Core.Datapoint.t())) :: Plot
+    def build_wind_speed_plot(glerl_datapoints) do
+        glerl_datapoints = Enum.reverse(glerl_datapoints)
+        dataset = convert_to_contex_data(glerl_datapoints)
+
+        first_timestamp_utc = List.first(glerl_datapoints).timestamp
+        last_timestamp_utc = List.last(glerl_datapoints).timestamp
+
+        y_scale_max = glerl_datapoints |> max_wind_speed() |> calc_wind_range_from_max()
+        y_scale = ContinuousLinearScale.new()
+          |> ContinuousLinearScale.domain(0.0, y_scale_max)
+          |> Scale.set_range(0.0, y_scale_max)
+        y_scale = %{y_scale | interval_count: round(y_scale_max/5), interval_size: 5, display_decimals: 0}
+
+        x_scale = Glerl.Web.Plots.TimeScale.new({first_timestamp_utc, last_timestamp_utc})
+
+        options = [
+            mapping: %{x_col: "X", y_cols: ["Wind Speed", "Gusting To", "15", "21"]},
+            custom_y_scale:  y_scale,
+            custom_x_scale: x_scale,
+            legend_setting: :legend_none,
+            axis_label_rotation: 45,
+        ]
+
+        Plot.new(dataset, LinePlot, 900, 500, options)
+    end
+
+    @spec build_wind_direction_plot(list(Glerl.Core.Datapoint.t())) :: Plot
+    def build_wind_direction_plot(glerl_datapoints) do
         glerl_datapoints = Enum.reverse(glerl_datapoints)
         dataset = convert_to_contex_data(glerl_datapoints)
 
