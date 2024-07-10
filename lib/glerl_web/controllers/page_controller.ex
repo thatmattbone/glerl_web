@@ -29,16 +29,15 @@ defmodule Glerl.Web.PageController do
     conn
       |> assign(:nav, :historical_conditions)
       |> assign(:for_date, historical_date)
-      |> assign(:session, session)
+      |> assign(:sailing_session, session)
       |> render(:historical_conditions)
   end
 
-  def historical_conditions(conn, params) do
-    IO.inspect(params)
-
+  def historical_conditions(conn, _params) do
     conn
       |> assign(:nav, :historical_conditions)
       |> assign(:sailing_session, :morning)
+      |> assign(:for_date, "2024-04-11")
       |> render(:historical_conditions_landing_page)
   end
 
