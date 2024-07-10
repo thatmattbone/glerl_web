@@ -19,7 +19,7 @@ defmodule Glerl.Web.PageController do
   def historical_conditions(conn, _params) do
     conn
       |> assign(:nav, :historical_conditions)
-      |> render(:historical_conditions)
+      |> render(:historical_conditions_landing_page)
   end
 
   def about(conn, _params) do
