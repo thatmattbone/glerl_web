@@ -16,9 +16,29 @@ defmodule Glerl.Web.PageController do
       |> render(:current_conditions)
   end
 
-  def historical_conditions(conn, _params) do
+  defp get_sailing_session(_params=%{"morning" => "on"}), do: :morning
+  defp get_sailing_session(_params=%{"afternoon" => "on"}), do: :afternoon
+  defp get_sailing_session(_params=%{"evening" => "on"}), do: :evening
+  defp get_sailing_session(_params), do: :morning
+
+  def historical_conditions(conn, params = %{"historical_date" => historical_date}) do
+    # check that the date is formatted...
+
+    session = get_sailing_session(params)
+
     conn
       |> assign(:nav, :historical_conditions)
+      |> assign(:for_date, historical_date)
+      |> assign(:session, session)
+      |> render(:historical_conditions)
+  end
+
+  def historical_conditions(conn, params) do
+    IO.inspect(params)
+
+    conn
+      |> assign(:nav, :historical_conditions)
+      |> assign(:sailing_session, :morning)
       |> render(:historical_conditions_landing_page)
   end
 
