@@ -14,7 +14,7 @@ config :glerl_web,
 # Configures the endpoint
 config :glerl_web, Glerl.Web.Endpoint,
   url: [host: "localhost"],
-  adapter: Phoenix.Endpoint.Cowboy2Adapter,
+  adapter: Bandit.PhoenixAdapter,
   render_errors: [
     formats: [html: Glerl.Web.ErrorHTML, json: Glerl.Web.ErrorJSON],
     layout: false
@@ -41,7 +41,7 @@ config :logger, :console,
 config :phoenix, :json_library, Jason
 
 # configure the timezone stuff
-config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
+config :elixir, :time_zone_database, Tz.TimeZoneDatabase
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
