@@ -12,6 +12,7 @@ defmodule Glerl.Web.Plots.Builder do
 
 
     @spec calc_wind_range_from_max(number()) :: number()
+    def calc_wind_range_from_max(max_wind) when max_wind < 25.0, do: 25.0
     def calc_wind_range_from_max(max_wind) when max_wind < 30.0, do: 30.0
     def calc_wind_range_from_max(max_wind) when max_wind < 35.0, do: 35.0
     def calc_wind_range_from_max(max_wind) when max_wind < 40.0, do: 40.0

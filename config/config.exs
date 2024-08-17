@@ -33,7 +33,7 @@ config :esbuild,
   ]
 
 # Configures Elixir's Logger
-config :logger, :console,
+config :logger, :default_formatter,
   format: "$date $time $metadata[$level] $message\n",
   metadata: [:request_id]
 
