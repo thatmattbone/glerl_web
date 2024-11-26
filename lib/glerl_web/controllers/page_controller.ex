@@ -2,7 +2,7 @@ defmodule Glerl.Web.PageController do
   use Glerl.Web, :controller
 
   def current_conditions(conn, _params) do
-    latest_glerl_data = Glerl.Realtime.Client.latest(120)  # two minute increments so this is four hours
+    latest_glerl_data = Glerl.Realtime.Client.latest(120) |> Enum.reverse()  # two minute increments so this is four hours
 
     [%{timestamp: timestamp} | _] = latest_glerl_data
     timestamp_diff = DateTime.utc_now() |> DateTime.diff(timestamp, :minute)

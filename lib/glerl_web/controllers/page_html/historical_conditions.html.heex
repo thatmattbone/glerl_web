@@ -1,42 +1,5 @@
 <h2>Conditions for the <%= @sailing_session %> session on <%= @for_date %>.</h2>
 
-<div style="max-width: 33%">
-<form>
-    <fieldset>
-        <label>
-        Sail Date:
-            <input 
-                type="date"
-                name="historical_date"
-                value="2024-04-11"
-                min="2002-01-01"
-                max="2024-12-31" 
-            />
-        </label>
-    </fieldset>
-
-    <fieldset>
-        <legend>Sail Session:</legend>
-        <label>
-            <input type="radio" name="morning" checked />
-            Morning
-        </label>
-        <label>
-            <input type="radio" name="afternoon" />
-            Afternoon
-        </label>
-        <label>
-            <input type="radio" name="evening" />
-            Evening
-        </label>
-    </fieldset>
-
-    <input
-        type="submit"
-        value="Submit"
-    />
-</form>
-
 <div style="margin-left: 0rem;">
   <.wind_speed_plot data={@data}/>
 </div>
@@ -45,4 +8,6 @@
   <.wind_direction_plot data={@data}/>
 </div>
 
+<div style="max-width: 33%">
+    <.historical_conditions_form sailing_session={@sailing_session} for_date={@for_date} />
 </div>

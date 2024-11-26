@@ -48,7 +48,6 @@ defmodule Glerl.Web.Plots.Builder do
 
     @spec build_wind_speed_plot(list(Glerl.Core.Datapoint.t())) :: Plot
     def build_wind_speed_plot(glerl_datapoints) do
-        glerl_datapoints = Enum.reverse(glerl_datapoints)
         dataset = convert_wind_speed_to_contex_data(glerl_datapoints)
 
         first_timestamp_utc = List.first(glerl_datapoints).timestamp
@@ -92,7 +91,6 @@ defmodule Glerl.Web.Plots.Builder do
 
     @spec build_wind_direction_plot(list(Glerl.Core.Datapoint.t())) :: Plot
     def build_wind_direction_plot(glerl_datapoints) do
-        glerl_datapoints = Enum.reverse(glerl_datapoints)
         dataset = convert_wind_direction_to_contex_data(glerl_datapoints)
 
         first_timestamp_utc = List.first(glerl_datapoints).timestamp
