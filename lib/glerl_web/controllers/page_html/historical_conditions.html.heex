@@ -1,4 +1,4 @@
-<h2>Conditions for the <%= @session %> session on <%= @for_date %>.</h2>
+<h2>Conditions for the <%= @sailing_session %> session on <%= @for_date %>.</h2>
 
 <div style="max-width: 33%">
 <form>
@@ -36,4 +36,13 @@
         value="Submit"
     />
 </form>
+
+<div style="margin-left: 0rem;">
+  <.wind_speed_plot data={@data}/>
+</div>
+
+<div style="margin-left: 0rem;">
+  <.wind_direction_plot data={@data}/>
+</div>
+
 </div>

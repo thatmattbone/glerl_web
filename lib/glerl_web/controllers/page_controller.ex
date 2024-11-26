@@ -9,10 +9,10 @@ defmodule Glerl.Web.PageController do
     is_data_stale = timestamp_diff > 30  # minutes
 
     conn
-      |> assign(:data, latest_glerl_data)
+      |> assign(:nav, :current_conditions)
       |> assign(:is_data_stale, is_data_stale)
       |> assign(:timestamp_diff, timestamp_diff)
-      |> assign(:nav, :current_conditions)
+      |> assign(:data, latest_glerl_data)
       |> render(:current_conditions)
   end
 
@@ -21,15 +21,21 @@ defmodule Glerl.Web.PageController do
   defp get_sailing_session(_params=%{"evening" => "on"}), do: :evening
   defp get_sailing_session(_params), do: :morning
 
-  def historical_conditions(conn, params = %{"historical_date" => historical_date}) do
-    # check that the date is formatted...
+  defp get_historical_date(historical_date) do
+    Date.from_iso8601!(historical_date)
+  end
 
-    session = get_sailing_session(params)
+  def historical_conditions(conn, params = %{"historical_date" => historical_date}) do
+    historical_date = get_historical_date(historical_date)
+    sailing_session = get_sailing_session(params)
+
+    historical_data = Glerl.Archive.Client.data_for_session(sailing_session, historical_date)
 
     conn
       |> assign(:nav, :historical_conditions)
       |> assign(:for_date, historical_date)
-      |> assign(:sailing_session, session)
+      |> assign(:sailing_session, sailing_session)
+      |> assign(:data, historical_data)
       |> render(:historical_conditions)
   end
 
