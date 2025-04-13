@@ -82,8 +82,8 @@ defmodule Glerl.Web.PageHTML do
     """
   end
 
-  #attr :sailing_session, :atom, required: true
-  #attr :for_date, :string, required: true
+  # attr :sailing_session, :atom, required: true
+  # attr :for_date, :string, required: true
   def historical_conditions_form(assigns) do
     ~H"""
     <.historical_conditions_form />
