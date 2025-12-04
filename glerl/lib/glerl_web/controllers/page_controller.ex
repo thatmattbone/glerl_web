@@ -1,5 +1,5 @@
-defmodule Glerl.WebWeb.PageController do
-  use Glerl.WebWeb, :controller
+defmodule Glerl.Web.PageController do
+  use Glerl.Web, :controller
 
   def home(conn, _params) do
     render(conn, :home)

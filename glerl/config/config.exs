@@ -7,16 +7,16 @@
 # General application configuration
 import Config
 
-config :glerl,
+config :glerl_web,
   namespace: Glerl.Web,
   generators: [timestamp_type: :utc_datetime]
 
 # Configures the endpoint
-config :glerl, Glerl.WebWeb.Endpoint,
+config :glerl_web, Glerl.Web.Endpoint,
   url: [host: "localhost"],
   adapter: Bandit.PhoenixAdapter,
   render_errors: [
-    formats: [html: Glerl.WebWeb.ErrorHTML, json: Glerl.WebWeb.ErrorJSON],
+    formats: [html: Glerl.Web.ErrorHTML, json: Glerl.Web.ErrorJSON],
     layout: false
   ],
   pubsub_server: Glerl.Web.PubSub,

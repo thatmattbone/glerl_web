@@ -1,9 +1,9 @@
-defmodule Glerl.WebWeb.Layouts do
+defmodule Glerl.Web.Layouts do
   @moduledoc """
   This module holds layouts and related functionality
   used by your application.
   """
-  use Glerl.WebWeb, :html
+  use Glerl.Web, :html
 
   # Embed all files in layouts/* within this module.
   # The default root.html.heex file contains the HTML

@@ -1,4 +1,4 @@
-defmodule Glerl.WebWeb.Telemetry do
+defmodule Glerl.Web.Telemetry do
   use Supervisor
   import Telemetry.Metrics
 
@@ -64,7 +64,7 @@ defmodule Glerl.WebWeb.Telemetry do
     [
       # A module, function and arguments to be invoked periodically.
       # This function must call :telemetry.execute/3 and a metric must be added above.
-      # {Glerl.WebWeb, :count_users, []}
+      # {Glerl.Web, :count_users, []}
     ]
   end
 end

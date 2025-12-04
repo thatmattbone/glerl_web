@@ -2,7 +2,7 @@ import Config
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :glerl, Glerl.WebWeb.Endpoint,
+config :glerl_web, Glerl.Web.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
   secret_key_base: "KUoZEGAQ8E4h6AyOpdHtx2eFyyGKhKCKQnzwhe76r+CimFdR8uquKiybkA5LFtbh",
   server: false

@@ -1,4 +1,4 @@
-defmodule Glerl.WebWeb.ErrorJSON do
+defmodule Glerl.Web.ErrorJSON do
   @moduledoc """
   This module is invoked by your endpoint in case of errors on JSON requests.
 

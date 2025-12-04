@@ -3,7 +3,7 @@ defmodule Glerl.Web.MixProject do
 
   def project do
     [
-      app: :glerl,
+      app: :glerl_web,
       version: "0.1.0",
       elixir: "~> 1.15",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -49,9 +49,14 @@ defmodule Glerl.Web.MixProject do
       {:telemetry_metrics, "~> 1.0"},
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.26"},
-      {:jason, "~> 1.2"},
+      {:jason, "~> 1.4"},
       {:dns_cluster, "~> 0.2.0"},
-      {:bandit, "~> 1.5"}
+      {:bandit, "~> 1.5"},
+      {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
+      {:contex, "~> 0.5.0"},
+      # TODO figure out a better way to juggle this for local dev vs running while deployed:
+      # {:glerl, path: "../glerl"},
+      # {:glerl, git: "https://github.com/thatmattbone/glerl.git", tag: "0.2.0"},
     ]
   end
 

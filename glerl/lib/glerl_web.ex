@@ -1,12 +1,12 @@
-defmodule Glerl.WebWeb do
+defmodule Glerl.Web do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, components, channels, and so on.
 
   This can be used in your application as:
 
-      use Glerl.WebWeb, :controller
-      use Glerl.WebWeb, :html
+      use Glerl.Web, :controller
+      use Glerl.Web, :html
 
   The definitions below will be executed for every controller,
   component, etc, so keep them short and clean, focused
@@ -40,7 +40,7 @@ defmodule Glerl.WebWeb do
     quote do
       use Phoenix.Controller, formats: [:html, :json]
 
-      use Gettext, backend: Glerl.WebWeb.Gettext
+      use Gettext, backend: Glerl.Web.Gettext
 
       import Plug.Conn
 
@@ -80,16 +80,16 @@ defmodule Glerl.WebWeb do
   defp html_helpers do
     quote do
       # Translation
-      use Gettext, backend: Glerl.WebWeb.Gettext
+      use Gettext, backend: Glerl.Web.Gettext
 
       # HTML escaping functionality
       import Phoenix.HTML
       # Core UI components
-      import Glerl.WebWeb.CoreComponents
+      import Glerl.Web.CoreComponents
 
       # Common modules used in templates
       alias Phoenix.LiveView.JS
-      alias Glerl.WebWeb.Layouts
+      alias Glerl.Web.Layouts
 
       # Routes generation with the ~p sigil
       unquote(verified_routes())
@@ -99,9 +99,9 @@ defmodule Glerl.WebWeb do
   def verified_routes do
     quote do
       use Phoenix.VerifiedRoutes,
-        endpoint: Glerl.WebWeb.Endpoint,
-        router: Glerl.WebWeb.Router,
-        statics: Glerl.WebWeb.static_paths()
+        endpoint: Glerl.Web.Endpoint,
+        router: Glerl.Web.Router,
+        statics: Glerl.Web.static_paths()
     end
   end
 

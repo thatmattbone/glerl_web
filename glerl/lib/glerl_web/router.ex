@@ -1,11 +1,11 @@
-defmodule Glerl.WebWeb.Router do
-  use Glerl.WebWeb, :router
+defmodule Glerl.Web.Router do
+  use Glerl.Web, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_live_flash
-    plug :put_root_layout, html: {Glerl.WebWeb.Layouts, :root}
+    plug :put_root_layout, html: {Glerl.Web.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
@@ -14,14 +14,14 @@ defmodule Glerl.WebWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", Glerl.WebWeb do
+  scope "/", Glerl.Web do
     pipe_through :browser
 
     get "/", PageController, :home
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", Glerl.WebWeb do
+  # scope "/api", Glerl.Web do
   #   pipe_through :api
   # end
 end

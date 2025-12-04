@@ -47,7 +47,6 @@ defmodule Glerl.Web.MixProject do
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.4"},
       {:dns_cluster, "~> 0.1.1"},
-      # {:plug_cowboy, "~> 2.5"}, # don't think we need this after upgrading to phoenix 1.7
       {:bandit, "~> 1.5"},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
       {:contex, "~> 0.5.0"},

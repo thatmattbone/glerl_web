@@ -1,12 +1,12 @@
-defmodule Glerl.WebWeb.ErrorJSONTest do
-  use Glerl.WebWeb.ConnCase, async: true
+defmodule Glerl.Web.ErrorJSONTest do
+  use Glerl.Web.ConnCase, async: true
 
   test "renders 404" do
-    assert Glerl.WebWeb.ErrorJSON.render("404.json", %{}) == %{errors: %{detail: "Not Found"}}
+    assert Glerl.Web.ErrorJSON.render("404.json", %{}) == %{errors: %{detail: "Not Found"}}
   end
 
   test "renders 500" do
-    assert Glerl.WebWeb.ErrorJSON.render("500.json", %{}) ==
+    assert Glerl.Web.ErrorJSON.render("500.json", %{}) ==
              %{errors: %{detail: "Internal Server Error"}}
   end
 end
