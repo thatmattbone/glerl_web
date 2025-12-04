@@ -55,7 +55,7 @@ defmodule Glerl.Web.MixProject do
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
       {:contex, "~> 0.5.0"},
       # TODO figure out a better way to juggle this for local dev vs running while deployed:
-      # {:glerl, path: "../glerl"},
+      {:glerl, path: "/home/mbone/Developer/glerl"},
       # {:glerl, git: "https://github.com/thatmattbone/glerl.git", tag: "0.2.0"},
     ]
   end
