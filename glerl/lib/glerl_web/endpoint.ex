@@ -1,5 +1,5 @@
 defmodule Glerl.Web.Endpoint do
-  use Phoenix.Endpoint, otp_app: :glerl
+  use Phoenix.Endpoint, otp_app: :glerl_web
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.

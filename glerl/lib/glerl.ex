@@ -1,4 +1,4 @@
-defmodule Glerl.Web do
+defmodule Glerl.Web.Whatever do
   @moduledoc """
   Glerl.Web keeps the contexts that define your domain
   and business logic.

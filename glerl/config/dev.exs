@@ -15,7 +15,7 @@ config :glerl_web, Glerl.Web.Endpoint,
   debug_errors: true,
   secret_key_base: "zBhBn5JSh9/1IApy8EkZm7a2OvQ2UMKsYYci7kcNSd2efEqPdAvu/mHE0/T9i1v8",
   watchers: [
-    esbuild: {Esbuild, :install_and_run, [:glerl, ~w(--sourcemap=inline --watch)]}
+    esbuild: {Esbuild, :install_and_run, [:glerl_web, ~w(--sourcemap=inline --watch)]}
   ]
 
 # ## SSL Support
