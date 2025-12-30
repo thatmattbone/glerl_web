@@ -17,7 +17,9 @@ defmodule Glerl.Web.Router do
   scope "/", Glerl.Web do
     pipe_through :browser
 
-    get "/", PageController, :home
+    get "/", PageController, :current_conditions
+    get "/historical-conditions", PageController, :historical_conditions
+    get "/about", PageController, :about
   end
 
   # Other scopes may use custom stacks.
