@@ -6,6 +6,8 @@ defmodule Glerl.Web.PageHTML do
   """
   use Glerl.Web, :html
 
+  alias Contex.Plot
+
   embed_templates "page_html/*"
 
   def hello_world() do
